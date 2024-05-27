@@ -38,7 +38,7 @@ Using Unreal Engine’s **Enhanced Input** system, the game’s controls are imp
 
 ### Gamepad Controls
 
-<img alt="A diagram of a video game control scheme overlaid on top of a photo of an Xbox controller" src="/images/projects/fps-prototype/controls-gamepad.png" width="600" />
+<img alt="A diagram of a video game control scheme overlaid on top of a photo of an Xbox controller" src="/portfolio/images/projects/fps-prototype/controls-gamepad.png" width="600" />
 
 ### Mouse/Keyboard Controls
 
@@ -80,14 +80,14 @@ Although the game is designed to be an FPS, I wanted to practice working with di
 
 To support multiple camera perspectives, I used separate first-person and third-person skeletal meshes for each playable character. I shared animations between these meshes by creating an **IK Retargeter** for each unique skeleton in Unreal Engine and retargeting animations between them.
 
-<img alt="A screenshot of an IK Retargeter in Unreal Engine showcasing two different skeletal meshes arranged in similar T-poses." src="/images/projects/fps-prototype/ik-retargeting.png" width="600" />
+<img alt="A screenshot of an IK Retargeter in Unreal Engine showcasing two different skeletal meshes arranged in similar T-poses." src="/portfolio/images/projects/fps-prototype/ik-retargeting.png" width="600" />
 
 I used a variety of techniques inside an **Animation Blueprint** to implement smooth animation transitions for each skeleton, including animation state machines, blended poses, Blend Spaces, and Aim Offsets.
 
 <div class="flexbox-horizontal flexbox-horizontal-blocks" style="margin-block-end: var(--spacing-6);">
-  <img alt="A screenshot of an Animation Blueprint inside Unreal Engine" class="flex-grow-1" src="/images/projects/fps-prototype/animation-blueprint-1.png" width="400" />
+  <img alt="A screenshot of an Animation Blueprint inside Unreal Engine" class="flex-grow-1" src="/portfolio/images/projects/fps-prototype/animation-blueprint-1.png" width="400" />
 
-  <img alt="A screenshot of an Animation Blueprint inside Unreal Engine" class="flex-grow-1" src="/images/projects/fps-prototype/animation-blueprint-2.png" width="400" />
+  <img alt="A screenshot of an Animation Blueprint inside Unreal Engine" class="flex-grow-1" src="/portfolio/images/projects/fps-prototype/animation-blueprint-2.png" width="400" />
 </div>
 
 ## Scripting
@@ -98,21 +98,21 @@ I built a system that allows for triggering scripted events within a level in a 
 
 **NPC barks** can be triggered, which utilize Dialogue Waves to play audio (in this prototype, placeholder audio is used in lieu of recorded dialogue). Barks can trigger other barks, allowing NPCs to respond to each other.
 
-<img alt="An animated GIF of video game dialogue subtitles" src="/images/projects/fps-prototype/barks-1.gif" />
+<img alt="An animated GIF of video game dialogue subtitles" src="/portfolio/images/projects/fps-prototype/barks-1.gif" />
 
 Scripted behaviors for NPCs can be triggered, such as gesture animations and targeted movement.
 
 <div class="flexbox-horizontal flexbox-horizontal-blocks" style="margin-block-end: var(--spacing-6);">
-  <img alt="An animated GIF of a video game character turning and pointing in the distance" src="/images/projects/fps-prototype/scripted-turn.gif" />
+  <img alt="An animated GIF of a video game character turning and pointing in the distance" src="/portfolio/images/projects/fps-prototype/scripted-turn.gif" />
 
-  <img alt="An animated GIF of a video game character nodding" src="/images/projects/fps-prototype/scripted-nod.gif" />
+  <img alt="An animated GIF of a video game character nodding" src="/portfolio/images/projects/fps-prototype/scripted-nod.gif" />
 </div>
 
 **Mission objectives and tutorials** can be triggered and displayed in the HUD.
 
-<img alt="An animated GIF of a video game tutorial notification being shown and then hidden" src="/images/projects/fps-prototype/scripted-tutorial.gif" />
+<img alt="An animated GIF of a video game tutorial notification being shown and then hidden" src="/portfolio/images/projects/fps-prototype/scripted-tutorial.gif" />
 
-<img alt="An animated GIF of a video game mission objective notification being shown and then hidden" src="/images/projects/fps-prototype/scripted-objective.gif" />
+<img alt="An animated GIF of a video game mission objective notification being shown and then hidden" src="/portfolio/images/projects/fps-prototype/scripted-objective.gif" />
 
 Temporary player view targets can be triggered, which prompt the player to press a button to pan the camera in a certain direction and gain visual context on their objective.
 
@@ -162,7 +162,7 @@ I integrated GAS cost and cooldown capabilities with sprinting to build a **stam
 
 <iframe class="yt-iframe" width="560" height="315" src="https://www.youtube-nocookie.com/embed/kXXaiM-HnN8?si=DCpwGBlKH47MJQLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<img alt="An animated GIF of a video game stamina bar emptying and refilling" src="/images/projects/fps-prototype/stamina-bar.gif" />
+<img alt="An animated GIF of a video game stamina bar emptying and refilling" src="/portfolio/images/projects/fps-prototype/stamina-bar.gif" />
 
 ### Character Switching
 
@@ -202,7 +202,7 @@ To implement **spread**, a bullet’s trajectory is randomized within a cone ori
 
 Weapons like shotguns can be configured to fire multiple projectiles at once.
 
-<img alt="A screenshot of a video game shotgun with debugging markings illustrating the trajectory of the gun's projectiles" src="/images/projects/fps-prototype/spread-sg.png" width="800" />
+<img alt="A screenshot of a video game shotgun with debugging markings illustrating the trajectory of the gun's projectiles" src="/portfolio/images/projects/fps-prototype/spread-sg.png" width="800" />
 
 ### Recoil
 
@@ -214,19 +214,19 @@ After firing a weapon, **viewkick** is temporarily added to the viewport to simu
 
 The HUD displays key pieces of information related to the player’s vital stats, squad, weapons, and special abilities.
 
-<img alt="A screenshot of a video game HUD (heads-up display) UI" src="/images/projects/fps-prototype/hud.png" width="900" />
+<img alt="A screenshot of a video game HUD (heads-up display) UI" src="/portfolio/images/projects/fps-prototype/hud.png" width="900" />
 
 Thanks to Unreal Engine’s **Common UI** plugin, the game’s UI can dynamically display gamepad and mouse/keyboard icons depending on what type of controller the player is using.
 
 <div class="flexbox-vertical" style="gap: var(--spacing-6); margin-block-end: var(--spacing-6);">
   <div class="flexbox-horizontal flexbox-horizontal-blocks">
-    <img alt="" src="/images/projects/fps-prototype/icon-mkb-1.png" width="240" />
-    <img alt="" src="/images/projects/fps-prototype/icon-gamepad-1.png" width="240" />
+    <img alt="" src="/portfolio/images/projects/fps-prototype/icon-mkb-1.png" width="240" />
+    <img alt="" src="/portfolio/images/projects/fps-prototype/icon-gamepad-1.png" width="240" />
   </div>
 
   <div class="flexbox-horizontal flexbox-horizontal-blocks">
-    <img alt="" src="/images/projects/fps-prototype/icon-mkb-2.png" width="240" />
-    <img alt="" src="/images/projects/fps-prototype/icon-gamepad-2.png" width="240" />
+    <img alt="" src="/portfolio/images/projects/fps-prototype/icon-mkb-2.png" width="240" />
+    <img alt="" src="/portfolio/images/projects/fps-prototype/icon-gamepad-2.png" width="240" />
   </div>
 </div>
 
