@@ -1,0 +1,95 @@
+---
+import HeroBanner from "../../components/HeroBanner.astro";
+import type { ProjectFrontmatter } from "../../helpers/projectHelpers";
+import AppLayout from "../../layouts/AppLayout.astro";
+
+const projects = (await Astro.glob<ProjectFrontmatter>("./*.mdx"))
+  .filter((project) => !project.frontmatter.draft)
+  .sort((a, b) => b.file.localeCompare(a.file));
+
+const projectLinkDimension = "var(--sizing-12)";
+const title = "Projects";
+---
+
+<AppLayout title={title}>
+  <HeroBanner
+    patternSrc="url('/images/global/hero-patterns/jigsaw.svg')"
+    subtitle={title}
+  />
+
+  <div
+    class="content-container-outer flexbox-vertical with-responsive-padding-inline"
+  >
+    <div class="content-container-inner flexbox-vertical">
+      <ul class="list-without-bullets projects-list">
+        {
+          projects.map((project) => (
+            <li>
+              <a class="flexbox-vertical project-link" href={project.url}>
+                <span class="project-link-title">
+                  {project.frontmatter.title}
+                </span>
+
+                <span class="project-link-blurb">
+                  {project.frontmatter.blurb}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</AppLayout>
+
+<style define:vars={{ projectLinkDimension }}>
+  .content-container-inner {
+    gap: var(--spacing-7);
+  }
+
+  .content-container-outer {
+    align-items: center;
+    padding-block: var(--spacing-7);
+  }
+
+  .project-link {
+    background-color: var(--color-neutral-1);
+    border-radius: var(--border-radius-1);
+    color: var(--color-neutral-9);
+    height: var(--projectLinkDimension);
+    justify-content: space-between;
+    padding: var(--spacing-4);
+    text-decoration: none;
+    transition: background-color var(--transition-duration-3);
+    width: var(--projectLinkDimension);
+  }
+
+  .project-link:hover {
+    background-color: var(--color-neutral-2);
+  }
+
+  .project-link-blurb {
+    font-size: var(--font-size-2);
+  }
+
+  .project-link-label {
+    font-weight: var(--font-weight-2);
+  }
+
+  .project-link-title {
+    font-size: var(--font-size-5);
+  }
+
+  .projects-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-7);
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .content-container-inner {
+      max-inline-size: var(--sizing-17);
+    }
+  }
+</style>

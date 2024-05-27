@@ -1,0 +1,84 @@
+---
+export interface Props {
+  backgroundColor?: string;
+  gradientColorDark?: string;
+  gradientColorLight?: string;
+  patternSrc?: string;
+  subtitle?: string;
+  title?: string;
+}
+
+const {
+  backgroundColor = "var(--color-neutral-9)",
+  gradientColorDark = "var(--color-primary-1-5)",
+  gradientColorLight = "var(--color-primary-1-1)",
+  patternSrc,
+  subtitle,
+  title = "Portfolio",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "flexbox-vertical",
+    "hero-banner",
+    "with-responsive-padding-inline",
+    { "hero-banner-with-pattern": !!patternSrc },
+  ]}
+>
+  <h1 class="hero-title">{title}</h1>
+
+  {subtitle && <h2 class="hero-subtitle">{subtitle}</h2>}
+</div>
+
+<style
+  define:vars={{
+    backgroundColor,
+    gradientColorDark,
+    gradientColorLight,
+    patternSrc,
+  }}
+>
+  .hero-banner {
+    align-items: center;
+    background-color: var(--backgroundColor);
+    justify-content: center;
+    min-block-size: var(--sizing-11);
+    padding-block: var(--spacing-5);
+  }
+
+  .hero-banner-with-pattern {
+    background-image: linear-gradient(
+        0deg,
+        transparent 30%,
+        var(--backgroundColor) 80%
+      ),
+      radial-gradient(
+        circle at 100% 0%,
+        var(--backgroundColor) 70%,
+        transparent 85%
+      ),
+      var(--patternSrc);
+  }
+
+  .hero-subtitle {
+    color: var(--color-neutral-2);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-0);
+    margin-block-start: var(--spacing-1);
+    text-align: center;
+  }
+
+  .hero-title {
+    background-clip: text;
+    background-image: linear-gradient(
+      45deg,
+      var(--gradientColorDark) 30%,
+      var(--gradientColorLight) 80%
+    );
+    color: transparent;
+    font-size: var(--font-size-9);
+    text-align: center;
+  }
+</style>

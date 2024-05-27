@@ -1,0 +1,178 @@
+---
+import AppLayout from "./AppLayout.astro";
+import type { ProjectFrontmatter } from "../helpers/projectHelpers";
+import HeroBanner from "../components/HeroBanner.astro";
+
+const frontmatter = Astro.props.frontmatter as ProjectFrontmatter;
+---
+
+<AppLayout title={frontmatter.title}>
+  <HeroBanner
+    patternSrc="url('/images/global/hero-patterns/graph-paper.svg')"
+    subtitle="Projects"
+  />
+
+  <div
+    class="content-container-outer flexbox-vertical with-responsive-padding-inline"
+  >
+    <div class="content-container-inner project-post">
+      <h1>{frontmatter.title}</h1>
+
+      {
+        (!!frontmatter.posted_on || !!frontmatter.year) && (
+          <div class="subtitle">
+            {!!frontmatter.year && (
+              <>
+                {frontmatter.year}{" "}
+                {!!frontmatter.blurb && <>• {frontmatter.blurb}</>}
+              </>
+            )}
+          </div>
+        )
+      }
+
+      <slot />
+    </div>
+  </div>
+</AppLayout>
+
+<style>
+  :global(.yt-iframe) {
+    display: block;
+    margin-block-end: var(--spacing-6);
+    max-inline-size: 100%;
+  }
+
+  :global(table) {
+    border: 1px solid var(--color-neutral-9);
+    border-collapse: collapse;
+    display: inline-block;
+    font-size: var(--font-size-1);
+    table-layout: fixed;
+  }
+
+  :global(thead) {
+    background-color: var(--color-neutral-2);
+  }
+
+  :global(th) {
+    padding: var(--spacing-2) var(--spacing-7);
+  }
+
+  :global(td) {
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  :global(img) {
+    margin-block-end: var(--spacing-6);
+  }
+
+  :global(.project-post h2) {
+    margin-block-end: var(--spacing-4);
+    margin-block-start: var(--spacing-7);
+  }
+
+  :global(.project-post h3) {
+    margin-block-end: var(--spacing-4);
+    margin-block-start: var(--spacing-7);
+  }
+
+  :global(.project-post h2) + :global(h3) {
+    margin-block-start: var(--spacing-5);
+  }
+
+  :global(.project-post h4) {
+    margin-block-end: var(--spacing-3);
+    margin-block-start: var(--spacing-6);
+  }
+
+  :global(.project-post p) {
+    margin-block-end: var(--spacing-6);
+  }
+
+  :global(.project-post ul) {
+    margin-block-end: var(--spacing-6);
+  }
+
+  :global(.project-post li ul) {
+    margin-block-end: var(--spacing-2);
+  }
+
+  :global(.project-post .note) {
+    background-color: var(--color-neutral-1);
+    border-color: var(--color-neutral-5);
+    border-radius: var(--border-radius-1);
+    border-style: solid;
+    border-width: var(--border-width-1);
+    font-size: var(--font-size-1);
+    gap: var(--spacing-4);
+    margin: var(--spacing-6);
+    padding: var(--spacing-4);
+  }
+
+  :global(.project-post .note > *) {
+    margin-block: 0;
+  }
+
+  :global(.project-post .note h1) {
+    font-size: var(--font-size-3);
+  }
+
+  :global(.project-post .tile-list) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-5);
+    justify-content: center;
+    margin-block: var(--spacing-6);
+  }
+
+  :global(.project-post .tile-list *) {
+    margin-block: 0;
+  }
+
+  :global(.project-post .tile-list p) {
+    font-size: var(--font-size-1);
+  }
+
+  :global(.project-post .tile-list > li) {
+    border-color: var(--color-neutral-5);
+    border-radius: var(--border-radius-1);
+    border-style: solid;
+    border-width: var(--border-width-1);
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+  }
+
+  :global(.project-post .tile-list-large > li) {
+    width: 100%;
+  }
+
+  :global(.project-post .tile-list-medium > li) {
+    max-width: var(--sizing-13);
+    width: 100%;
+  }
+
+  :global(.project-post .tile-list-small > li) {
+    width: var(--sizing-12);
+  }
+
+  .content-container-outer {
+    align-items: center;
+    padding-block: var(--spacing-7);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-3);
+    margin-block-end: var(--spacing-6);
+  }
+
+  @media (min-width: 768px) {
+    :global(.project-post .tile-list-medium > li) {
+      width: var(--sizing-13);
+    }
+
+    .content-container-inner {
+      max-inline-size: var(--sizing-17);
+    }
+  }
+</style>

@@ -1,0 +1,264 @@
+---
+import HeroBanner from "../components/HeroBanner.astro";
+import type { ProjectFrontmatter } from "../helpers/projectHelpers";
+import AppLayout from "../layouts/AppLayout.astro";
+
+const allProjects = (
+  await Astro.glob<ProjectFrontmatter>("./projects/*.mdx")
+).filter((project) => !project.frontmatter.draft);
+
+allProjects.sort((a, b) => b.file.localeCompare(a.file));
+
+const gameProjects = allProjects.filter((post) =>
+  post.frontmatter.tags?.includes("game")
+);
+const miscProjects = allProjects.filter(
+  (post) => !post.frontmatter.tags?.includes("game")
+);
+
+const projectLinkDimension = "var(--sizing-12)";
+---
+
+<AppLayout>
+  <HeroBanner subtitle="Game Design and Engineering" />
+
+  <div
+    class="content-container-outer flexbox-vertical with-responsive-padding-inline"
+  >
+    <div class="content-container-inner flexbox-vertical about-section">
+      <p>
+        An aspiring video game designer with a technical background as a software engineer.
+      </p>
+    </div>
+
+    <div class="content-container-inner flexbox-vertical">
+      <h1 class="heading">Skills</h1>
+
+      <div class="skills-container">
+        <div>
+          <p class="skills-list-category">Software</p>
+
+          <ul class="skills-list flexbox-vertical">
+            <li>
+              Unreal Engine 5
+              <ul class="skills-sublist flexbox-vertical">
+                <li>Blueprint / C++</li>
+                <li>Gameplay Ability System (GAS)</li>
+                <li>Common UI</li>
+              </ul>
+            </li>
+            <li>
+              Maya
+              <ul class="skills-sublist flexbox-vertical">
+                <li>Hard-surface modeling</li>
+                <li>UV unwrapping</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="skills-list-category">Programming Languages</p>
+
+          <ul class="skills-list flexbox-vertical">
+            <li>C++</li>
+            <li>JavaScript / TypeScript</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {
+      gameProjects.length > 0 && (
+        <div class="content-container-inner flexbox-vertical projects-section">
+          <h1 class="heading">Game Projects</h1>
+
+          <ul class="list-without-bullets projects-list">
+            {gameProjects.map((project) => (
+              <li class="project-link-container">
+                <a class="flexbox-vertical project-link" href={project.url}>
+                  <span class="project-link-title">
+                    {project.frontmatter.title}
+                  </span>
+
+                  <span class="project-link-blurb">
+                    {project.frontmatter.blurb}
+                  </span>
+                </a>
+
+                <img
+                  alt=""
+                  class="project-image"
+                  src={project.frontmatter.image}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    {
+      miscProjects.length > 0 && (
+        <div class="content-container-inner flexbox-vertical projects-section">
+          <h1 class="heading">Other Projects</h1>
+
+          <ul class="list-without-bullets projects-list">
+            {miscProjects.map((project) => (
+              <li class="project-link-container">
+                <a class="flexbox-vertical project-link" href={project.url}>
+                  <span class="project-link-title">
+                    {project.frontmatter.title}
+                  </span>
+
+                  <span class="project-link-blurb">
+                    {project.frontmatter.blurb}
+                  </span>
+                </a>
+
+                <img
+                  alt=""
+                  class="project-image"
+                  src={project.frontmatter.image}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    <style define:vars={{ projectLinkDimension }}>
+      .content-container-inner {
+        gap: var(--spacing-6);
+      }
+
+      .about-section {
+        gap: var(--spacing-5);
+      }
+
+      .content-container-outer {
+        align-items: center;
+        gap: var(--spacing-8);
+        padding-block: var(--spacing-7);
+      }
+
+      .heading {
+        font-size: var(--font-size-6);
+        text-align: center;
+      }
+
+      .project-category {
+        font-weight: var(--font-weight-1);
+        font-size: var(--font-size-5);
+        margin-block-end: var(--spacing-5);
+        text-align: center;
+      }
+
+      .project-link-container {
+        block-size: var(--projectLinkDimension);
+        border-radius: var(--border-radius-1);
+        display: block;
+        inline-size: var(--projectLinkDimension);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .project-image {
+        inline-size: 100%;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        opacity: 0.4;
+        position: absolute;
+        transition: opacity var(--transition-duration-1) ease-in-out;
+        z-index: 1;
+      }
+
+      .project-link:hover ~ .project-image {
+        opacity: 1;
+      }
+
+      .project-link {
+        block-size: 100%;
+        color: var(--color-neutral-9);
+        inline-size: 100%;
+        justify-content: space-between;
+        padding: var(--spacing-4);
+        position: relative;
+        text-decoration: none;
+        transition: color var(--transition-duration-1) ease-in-out;
+        z-index: 2;
+      }
+
+      .project-link:hover {
+        color: var(--color-neutral-0);
+      }
+
+      .project-link-blurb {
+        font-size: var(--font-size-2);
+      }
+
+      .project-link-label {
+        font-weight: var(--font-weight-2);
+      }
+
+      .project-link-title {
+        font-size: var(--font-size-5);
+        font-weight: var(--font-weight-2);
+      }
+
+      .list-without-bullets.projects-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-5);
+        justify-content: center;
+      }
+
+      .content-container-inner.projects-section {
+        max-inline-size: var(--sizing-17);
+      }
+
+      .skills-container {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-6) var(--spacing-10);
+        justify-content: center;
+      }
+
+      .skills-list-category {
+        font-size: var(--font-size-3);
+        font-weight: var(--font-weight-2);
+        margin-block-end: var(--spacing-1);
+        text-align: center;
+      }
+
+      .skills-list {
+        gap: var(--spacing-1);
+      }
+
+      .skills-sublist {
+        gap: var(--spacing-1);
+        margin-block-start: var(--spacing-1);
+      }
+
+      .social-links {
+        text-align: center;
+      }
+
+      .text-link {
+        font-weight: var(--font-weight-1);
+      }
+
+      @media (min-width: 768px) {
+        .content-container-inner {
+          max-inline-size: var(--sizing-16);
+        }
+
+        .skills-list-category {
+          text-align: start;
+        }
+      }
+    </style>
+  </div>
+</AppLayout>
