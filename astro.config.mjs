@@ -4,5 +4,5 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx()],
-  site: "https://username.github.io/portfolio",
+  site: "https://intrepidtoucan.github.io/portfolio",
 });
